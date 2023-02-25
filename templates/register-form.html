@@ -1,38 +1,37 @@
 {{define "register-form"}}
 <form method="POST">
-  <label for="username">Username</label>
-  <input type="text" name="username" id="username" />
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
 
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" />
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
 
-  <label for="gender">Gender</label>
-  <select name="gender" id="gender">
-    <option value="" selected>Select</option>
-    <option value="man" {{if eq .Gender "man"}}selected{{end}}>Man</option>
-    <option value="woman" {{if eq .Gender "woman"}}selected{{end}}>Woman</option>
-    <option value="other" {{if eq .Gender "other"}}selected{{end}}>Other</option>
-  </select>
+    <label for="sexe">Sexe</label>
+    <select name="sexe" id="sexe">
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="autre">Autre</option>
+    </select>
 
-  {{if eq .Gender "man"}}
-  <label for="height">Height</label>
-  <input type="number" name="height" id="height" min="0.1" max="50" step="0.1" />
-  {{else if eq .Gender "woman"}}
-  <label for="height">Height</label>
-  <input type="number" name="height" id="height" min="1" max="95" />
-  {{else if eq .Gender "other"}}
-  <span>...</span>
-  {{end}}
+    {{if eq .Sexe "homme"}}
+    <label for="taille">Taille</label>
+    <input type="number" name="taille" id="taille" min="0,1" max="50">
+    {{end}}
 
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password" />
-  <input type="submit" value="Register" />
+    {{if eq .Sexe "femme"}}
+    <label for="taille">Taille</label>
+    <input type="number" name="taille" id="taille" min="1" max="95">
+    <input type="text" name="taille" id="taille" min="A" max="Z">
+    {{end}}
+
+    {{if eq .Sexe "autre"}}
+
+    {{end}}
+
+    
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <input type="submit" value="Register">  
 </form>
-
-<script>
-  const genderSelect = document.querySelector("select#gender");
-  genderSelect.addEventListener("change", () => {
-    console.log(genderSelect.value);
-  });
-</script>
 {{end}}
